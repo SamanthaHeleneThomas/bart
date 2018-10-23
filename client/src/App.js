@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
+import StarWarsCharacters from './StarWarsCharacters'
 
 class App extends Component {
 
-  state = { gibberish: "" }
+  state = { 
+    gibberish: "",
+    wookies: []
+   }
 
   componentDidMount(){
     axios.get('/matthew_is_teaching')
@@ -14,7 +18,7 @@ class App extends Component {
 
   tuesday = () => {
     axios.get('/star_trek_is_cooler')
-    .then( wookie => console.log(wookie))
+    .then( wookies => this.setState({wookies: wookies.data.results}))
   }
 
   wednesday = () => {
@@ -32,6 +36,9 @@ class App extends Component {
         <div onClick={this.wednesday}>
           this is gonna be wednesdays button
         </div>
+        <StarWarsCharacters 
+        characters ={this.state.wookies}
+        />
       </div>
     );
   }

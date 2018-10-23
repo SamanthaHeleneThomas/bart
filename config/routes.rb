@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+ 
   namespace :api do
-    resources :things
+    resources :api
   end
 
   get 'matthew_is_teaching', :to => 'bart_simpsons#these'
